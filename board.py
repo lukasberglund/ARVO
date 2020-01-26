@@ -53,6 +53,3 @@ class SubBoard:
 
     def row_as_str(self, row):
         return " " + ' | '.join(self.fields[row]) + " "
-
-b = Board()
-print(b)
