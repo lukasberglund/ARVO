@@ -14,15 +14,13 @@ class Board:
         return sub_boards
 
     def __repr__(self):
-        rows = []
-        for row in range(3):
-            rows.append(self.row_as_str(row))
-        return "\n" + "\n\n\n".join(rows) + "\n"
+        big_rows = [] #contains rows of sub_boards
+        for big_row in range(3):
+            big_rows.append(self.big_row_as_str(big_row))
+        return "\n" + "\n\n\n".join(big_rows) + "\n"
 
-    def row_as_str(self, row):
-        """
-        Represents the n_th row of sub_boards as a string
-        """
+    def big_row_as_str(self, row):
+        """Represents the n_th row of sub_boards as a string """
         line_seperator = "\n-----------     -----------     -----------\n"
         sub_rows = []
         for sub_row in range(3):
@@ -30,6 +28,7 @@ class Board:
         return line_seperator.join(sub_rows)
 
     def sub_row_as_str(self, row, sub_row):
+        """Represents small rows as strings"""
         cols = []
         for col in range(3):
             cols.append(self.sub_boards[row][col].row_as_str(sub_row))
@@ -54,3 +53,6 @@ class SubBoard:
 
     def row_as_str(self, row):
         return " " + ' | '.join(self.fields[row]) + " "
+
+b = Board()
+print(b)
