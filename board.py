@@ -7,22 +7,47 @@ class Board:
 
     def gen_sub_boards(self):
         sub_boards = []
-        for col in range(3):
-            self.sub_boards.append([])
-            for row in range(3):
-                self.sub_boards[col].append(SubBoard())
+        for row in range(3):
+            sub_boards.append([])
+            for col in range(3):
+                sub_boards[row].append(SubBoard())
         return sub_boards
+
+    def __repr__(self):
+        rows = []
+        for row in range(3):
+            rows.append(self.row_as_str(row))
+        return "\n" + "\n\n\n".join(rows) + "\n"
+
+    def row_as_str(self, row):
+        line_seperator = "\n-----------     -----------     -----------\n"
+        sub_rows = []
+        for sub_row in range(3):
+            sub_rows.append(self.sub_row_as_str(row, sub_row))
+        return line_seperator.join(sub_rows)
+
+    def sub_row_as_str(self, row, sub_row):
+        cols = []
+        for col in range(3):
+            cols.append(self.sub_boards[row][col].row_as_str(sub_row))
+        return "     ".join(cols)
 
 class SubBoard:
     def __init__(self):
         self.is_won = False
         self.winner = ""
-        self.fields = self.gen_fields
+        self.fields = self.gen_fields()
 
     def gen_fields(self):
         fields = []
         for col in range(3):
-            self.fields.append([])
+            fields.append([])
             for row in range(3):
-                self.fields[col].append(" ")
-        return sub_boards
+                fields[col].append(" ")
+        return fields
+
+    def get_field(row, col):
+        return self.fields[row][col]
+
+    def row_as_str(self, row):
+        return " " + ' | '.join(self.fields[row]) + " "
