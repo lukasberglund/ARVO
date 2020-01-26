@@ -20,6 +20,9 @@ class Board:
         return "\n" + "\n\n\n".join(rows) + "\n"
 
     def row_as_str(self, row):
+        """
+        Represents the n_th row of sub_boards as a string
+        """
         line_seperator = "\n-----------     -----------     -----------\n"
         sub_rows = []
         for sub_row in range(3):
