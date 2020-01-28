@@ -16,7 +16,6 @@ class Board:
                 sub_boards[row].append(SubBoard())
         return sub_boards
 
-<<<<<<< HEAD
     def __repr__(self):
         big_rows = [] #contains rows of sub_boards
         for big_row in range(3):
@@ -37,7 +36,6 @@ class Board:
         for col in range(3):
             cols.append(self.sub_boards[row][col].row_as_str(sub_row))
         return "     ".join(cols)
-=======
     def is_valid(self,x,y):
         return not sub_boards[x][y].is_won and not sub_boards[x][y].num_moves == 9
         and x < 3 and x >= 0 and y < 3 and y >= 0
@@ -80,25 +78,19 @@ class Board:
         if self.sub_boads[0][2] == piece and self.sub_boads[1][1] == piece and self.sub_boads[2][0] == piece:
             return True
         return False
->>>>>>> progress
 
 class SubBoard:
     def __init__(self):
         self.is_won = False
         self.winner = ""
-<<<<<<< HEAD
         self.fields = self.gen_fields()
-=======
-        self.fields = self.gen_fields
         self.num_moves = 0
->>>>>>> progress
 
     def gen_fields(self):
         fields = []
         for col in range(3):
             fields.append([])
             for row in range(3):
-<<<<<<< HEAD
                 fields[col].append(" ")
         return fields
 
@@ -107,7 +99,6 @@ class SubBoard:
 
     def row_as_str(self, row):
         return " " + ' | '.join(self.fields[row]) + " "
-=======
                 self.fields[col].append(" ")
         return sub_boards
 
@@ -157,4 +148,3 @@ class SubBoard:
         if self.fields[0][2] == piece and self.fields[1][1] == piece and self.fields[2][0] == piece:
             return True
         return False
->>>>>>> progress
