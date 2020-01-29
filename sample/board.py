@@ -36,8 +36,6 @@ class Board:
             cols.append(self.sub_boards[row][col].row_as_str(sub_row))
         return "     ".join(cols)
 
-
-
     def is_valid(self,x,y):
         return (not self.sub_boards[x][y].is_won and not self.sub_boards[x][y].num_moves == 9
         and x < 3 and x >= 0 and y < 3 and y >= 0)
@@ -64,7 +62,7 @@ class Board:
     def col_won(self,piece):
         won = False
         col = 0
-        while not won or col < 3:
+        while not won and col < 3:
             won = (self.sub_boards[0][col] == piece and self.sub_boards[1][col] == piece and self.sub_boards[2][col] == piece)
             col += 1
 
@@ -73,7 +71,7 @@ class Board:
     def row_won(self,piece):
         won = False
         row = 0
-        while not won or row < 3:
+        while not won and row < 3:
             won = (self.sub_boards[row][0] == piece and self.sub_boards[row][1] == piece and self.sub_boards[row][2] == piece)
             row += 1
         return won
@@ -103,7 +101,7 @@ class SubBoard:
     def get_field(self, row, col):
         return self.fields[row][col]
 
-    def row_as_str(self, row):
+    def row_as_str(self, row): #this is different than the other one
         return " " + ' | '.join(self.fields[row]) + " "
 
     def is_full(self):
@@ -142,7 +140,7 @@ class SubBoard:
         won = False
         row = 0
         while not won and row < 3:
-            return self.fields[row][0] == piece and self.fields[row][1] == piece and self.fields[row][2] == piece
+            won = self.fields[row][0] == piece and self.fields[row][1] == piece and self.fields[row][2] == piece
             row = row + 1
         return won
 

@@ -1,4 +1,3 @@
-
 import sample.board as board
 board = board.Board()
 
